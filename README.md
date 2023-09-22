@@ -4,6 +4,8 @@ Discover all the alembic tools in [our documentation](https://docs.alembic.tech/
 
 ## Installation
 
+> Don't forget to add `cometh-demo.eu.auth0.com` to your project's authorized domains on https://app.cometh.io/.
+
 Clone the repo and run `yarn install`
 
 Setup your .env file from the .env.example file.
