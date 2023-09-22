@@ -23,9 +23,10 @@ const handler = NextAuth({
   },
   providers: [
     Auth0Provider({
-      clientId: process.env.AUTH0_CLIENT_ID || "",
-      clientSecret: process.env.AUTH0_CLIENT_SECRET || "",
-      issuer: process.env.AUTH0_ISSUER_BASE_URL || "",
+      clientId: "Ya5mvk2SVzkKX36jmyyWsrUp673409qe",
+      clientSecret:
+        "3DnCBXh1ZVyNMJ6IZF9bK4oZzMN58-gs7DhxIpIOk_XGxx_P4cEjJitl3IlPkjCB",
+      issuer: "https://cometh-demo.eu.auth0.com",
     }),
   ],
 });
