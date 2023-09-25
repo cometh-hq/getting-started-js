@@ -40,13 +40,11 @@ export function useWalletAuth() {
         chainId: SupportedNetworks.MUMBAI,
         jwtToken: session?.accessToken as string,
         apiKey,
-        baseUrl: "https://api.connect.develop.cometh.tech/",
       });
 
       const instance = new ComethWallet({
         authAdapter: walletAdaptor,
         apiKey,
-        baseUrl: "https://api.connect.develop.cometh.tech/",
       });
 
       const instanceProvider = new ComethProvider(instance);
