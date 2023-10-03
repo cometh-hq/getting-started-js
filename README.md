@@ -1,6 +1,6 @@
-# Alembic getting started example
+# Cometh getting started example
 
-Discover all the alembic tools in [our documentation](https://docs.alembic.tech/).
+Discover all the cometh tools here: [our documentation](https://docs.cometh.io/).
 
 ## Installation
 
