@@ -188,10 +188,10 @@
   resolved "https://registry.yarnpkg.com/@cbor-extract/cbor-extract-win32-x64/-/cbor-extract-win32-x64-2.1.1.tgz#21b11a1a3f18c3e7d62fd5f87438b7ed2c64c1f7"
   integrity sha512-2Niq1C41dCRIDeD8LddiH+mxGlO7HJ612Ll3D/E73ZWBmycued+8ghTr/Ho3CMOWPUEr08XtyBMVXAjqF+TcKw==
 
-"@cometh/connect-sdk@1.1.0-rc.3":
-  version "1.1.0-rc.3"
-  resolved "https://registry.yarnpkg.com/@cometh/connect-sdk/-/connect-sdk-1.1.0-rc.3.tgz#e120157e202b58573b92b1214dcc0b5085b8d452"
-  integrity sha512-YkByOJNRnDkFA7+jYg8P5RWDIIBzHYsr42EpN3bfN8J+41Qer2hfQ12CRP7hJRhwVmthrxC/roG/yt7GHwneWA==
+"@cometh/connect-sdk@1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@cometh/connect-sdk/-/connect-sdk-1.1.0.tgz#d44a8e6250f602c697394614a3d8150761acf7cb"
+  integrity sha512-Y0u6AftBC5PsDNY0P/3seFugmtKlIzz55wRNN2bdoAzuwnBg298haJXB+HUlnBheZngEN+euaIf/QbNqlr/UNw==
   dependencies:
     "@alembic/ui" "^1.5.2"
     "@ethersproject/abstract-provider" "^5.7.0"
