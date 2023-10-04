@@ -12,7 +12,7 @@ Setup your .env file from the .env.example file.
 
 ## Start
 
-Set you Alembic API KEY in the following env var:
+Set you Cometh API KEY in the following env var:
 
 ```
 export NEXT_PUBLIC_COMETH_API_KEY=YOUR_API_KEY
