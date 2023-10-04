@@ -34,18 +34,14 @@ export function useWalletAuth() {
   async function connect() {
     setIsConnecting(true);
     try {
-      const baseUrl = "http://localhost:3001/";
-
       const walletAdaptor = new ConnectAdaptor({
         chainId: SupportedNetworks.MUMBAI,
         apiKey,
-        baseUrl,
       });
 
       const instance = new ComethWallet({
         authAdapter: walletAdaptor,
         apiKey,
-        baseUrl,
       });
 
       const instanceProvider = new ComethProvider(instance);
@@ -56,7 +52,7 @@ export function useWalletAuth() {
         await instance.connect(localStorageAddress);
       } else {
         await instance.connect();
-        const walletAddress = await walletAdaptor.getWalletAddress();
+        const walletAddress = await instance.getAddress();
         window.localStorage.setItem("walletAddress", walletAddress);
       }
 
