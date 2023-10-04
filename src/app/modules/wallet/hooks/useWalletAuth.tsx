@@ -10,7 +10,6 @@ import { useState } from "react";
 import { useWalletContext } from "./useWalletContext";
 import { ethers } from "ethers";
 import countContractAbi from "../../contract/counterABI.json";
-import { useSession } from "next-auth/react";
 
 export function useWalletAuth() {
   const {
@@ -24,7 +23,6 @@ export function useWalletAuth() {
   const [isConnected, setIsConnected] = useState(false);
 
   const [connectionError, setConnectionError] = useState<string | null>(null);
-  const { data: session } = useSession();
 
   const apiKey = process.env.NEXT_PUBLIC_COMETH_API_KEY!;
   const COUNTER_CONTRACT_ADDRESS = "0x3633A1bE570fBD902D10aC6ADd65BB11FC914624";
@@ -36,20 +34,31 @@ export function useWalletAuth() {
   async function connect() {
     setIsConnecting(true);
     try {
+      const baseUrl = "http://localhost:3001/";
+
       const walletAdaptor = new ConnectAdaptor({
         chainId: SupportedNetworks.MUMBAI,
-        jwtToken: session?.accessToken as string,
         apiKey,
+        baseUrl,
       });
 
       const instance = new ComethWallet({
         authAdapter: walletAdaptor,
         apiKey,
+        baseUrl,
       });
 
       const instanceProvider = new ComethProvider(instance);
 
-      await instance.connect();
+      const localStorageAddress = window.localStorage.getItem("walletAddress");
+
+      if (localStorageAddress) {
+        await instance.connect(localStorageAddress);
+      } else {
+        await instance.connect();
+        const walletAddress = await walletAdaptor.getWalletAddress();
+        window.localStorage.setItem("walletAddress", walletAddress);
+      }
 
       const contract = new ethers.Contract(
         COUNTER_CONTRACT_ADDRESS,
