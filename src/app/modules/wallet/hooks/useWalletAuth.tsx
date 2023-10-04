@@ -44,8 +44,6 @@ export function useWalletAuth() {
         apiKey,
       });
 
-      const instanceProvider = new ComethProvider(instance);
-
       const localStorageAddress = window.localStorage.getItem("walletAddress");
 
       if (localStorageAddress) {
@@ -55,6 +53,8 @@ export function useWalletAuth() {
         const walletAddress = await instance.getAddress();
         window.localStorage.setItem("walletAddress", walletAddress);
       }
+
+      const instanceProvider = new ComethProvider(instance);
 
       const contract = new ethers.Contract(
         COUNTER_CONTRACT_ADDRESS,
