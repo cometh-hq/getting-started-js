@@ -218,8 +218,10 @@
   resolved "https://registry.yarnpkg.com/@cbor-extract/cbor-extract-win32-x64/-/cbor-extract-win32-x64-2.1.1.tgz#21b11a1a3f18c3e7d62fd5f87438b7ed2c64c1f7"
   integrity sha512-2Niq1C41dCRIDeD8LddiH+mxGlO7HJ612Ll3D/E73ZWBmycued+8ghTr/Ho3CMOWPUEr08XtyBMVXAjqF+TcKw==
 
-"@cometh/connect-sdk-viem@file:.yalc/@cometh/connect-sdk-viem":
-  version "1.0.0"
+"@cometh/connect-sdk-viem@1.0.0-dev.1":
+  version "1.0.0-dev.1"
+  resolved "https://registry.yarnpkg.com/@cometh/connect-sdk-viem/-/connect-sdk-viem-1.0.0-dev.1.tgz#a19a916f86f06aac91f74106a7b960592470aef7"
+  integrity sha512-dFK6GKmYOa1aL/s6UwikF7Zmx72D79QfD2hAq3bw75uF/MRTJXxPAnzDwW53lWl+KkOAjzVhxGpIwSeBE8aN2w==
   dependencies:
     "@alchemy/aa-core" "^1.2.0"
     "@babel/traverse" "^7.23.4"
