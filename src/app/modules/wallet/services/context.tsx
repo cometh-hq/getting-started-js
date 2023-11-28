@@ -1,22 +1,18 @@
 "use client";
-import { ComethProvider, ComethWallet } from "@cometh/connect-sdk";
-import { ethers } from "ethers";
+import { ComethWallet } from "@cometh/connect-sdk";
+import { ComethClient } from "@cometh/connect-sdk-viem";
 import { createContext, Dispatch, SetStateAction, useState } from "react";
 
 export const WalletContext = createContext<{
   wallet: ComethWallet | null;
   setWallet: Dispatch<SetStateAction<ComethWallet | null>>;
-  provider: ComethProvider | null;
-  setProvider: Dispatch<SetStateAction<ComethProvider | null>>;
-  counterContract: ethers.Contract | null;
-  setCounterContract: Dispatch<SetStateAction<any | null>>;
+  connectClient: ComethClient | null;
+  setConnectClient: Dispatch<SetStateAction<ComethClient | null>>;
 }>({
   wallet: null,
   setWallet: () => {},
-  provider: null,
-  setProvider: () => {},
-  counterContract: null,
-  setCounterContract: () => {},
+  connectClient: null,
+  setConnectClient: () => {},
 });
 
 export function WalletProvider({
@@ -25,19 +21,15 @@ export function WalletProvider({
   children: React.ReactNode;
 }): JSX.Element {
   const [wallet, setWallet] = useState<ComethWallet | null>(null);
-  const [provider, setProvider] = useState<ComethProvider | null>(null);
-  const [counterContract, setCounterContract] =
-    useState<ethers.Contract | null>(null);
+  const [connectClient, setConnectClient] = useState<ComethClient | null>(null);
 
   return (
     <WalletContext.Provider
       value={{
         wallet,
         setWallet,
-        provider,
-        setProvider,
-        counterContract,
-        setCounterContract,
+        connectClient,
+        setConnectClient,
       }}
     >
       {children}

@@ -5,17 +5,13 @@ export function useWalletContext() {
   const {
     wallet,
     setWallet,
-    provider,
-    setProvider,
-    counterContract,
-    setCounterContract,
+    connectClient,
+    setConnectClient
   } = useContext(WalletContext);
   return {
     wallet,
     setWallet,
-    provider,
-    setProvider,
-    counterContract,
-    setCounterContract,
+    connectClient,
+    setConnectClient
   };
 }

@@ -1,14 +1,14 @@
 "use client";
 
 import { Icons } from "../lib/ui/components";
-import { TransactionReceipt } from "@ethersproject/providers";
 import React, { useEffect, useState } from "react";
 import { useWalletAuth } from "../modules/wallet/hooks/useWalletAuth";
 import Alert from "../lib/ui/components/Alert";
 import { PlusIcon } from "@radix-ui/react-icons";
-import { RelayTransactionResponse } from "@cometh/connect-sdk";
-import { useWindowSize } from "../lib/ui/hooks/useWindowSize";
-import Confetti from "react-confetti";
+import { encodeFunctionData } from "viem";
+import countContractAbi from "../../app/modules/contract/counterABI.json";
+
+const COUNTER_CONTRACT_ADDRESS = "0x84ADD3fa2c2463C8cF2C95aD70e4b5F602332160";
 
 interface TransactionProps {
   transactionSuccess: boolean;
@@ -19,13 +19,13 @@ export function Transaction({
   transactionSuccess,
   setTransactionSuccess,
 }: TransactionProps) {
-  const { wallet, counterContract } = useWalletAuth();
+  const { wallet, connectClient } = useWalletAuth();
   const [isTransactionLoading, setIsTransactionLoading] =
     useState<boolean>(false);
-  const [transactionSended, setTransactionSended] =
-    useState<RelayTransactionResponse | null>(null);
-  const [transactionResponse, setTransactionResponse] =
-    useState<TransactionReceipt | null>(null);
+  const [transactionSended, setTransactionSended] = useState<string | null>(
+    null
+  );
+  const [transactionResponse, setTransactionResponse] = useState<any>(null);
   const [transactionFailure, setTransactionFailure] = useState(false);
   const [nftBalance, setNftBalance] = useState<number>(0);
 
@@ -56,7 +56,13 @@ export function Transaction({
   useEffect(() => {
     if (wallet) {
       (async () => {
-        const balance = await counterContract!.counters(wallet.getAddress());
+        const balance = await connectClient!.readContract({
+          address: COUNTER_CONTRACT_ADDRESS,
+          abi: countContractAbi,
+          functionName: "counters",
+          args: [wallet.getAddress()],
+        });
+
         setNftBalance(Number(balance));
       })();
     }
@@ -72,12 +78,28 @@ export function Transaction({
     try {
       if (!wallet) throw new Error("No wallet instance");
 
-      const tx: RelayTransactionResponse = await counterContract!.count();
+      const txCallData = encodeFunctionData({
+        abi: countContractAbi,
+        functionName: "count",
+      });
+
+      const tx = await connectClient!.sendTransaction({
+        to: COUNTER_CONTRACT_ADDRESS,
+        value: BigInt(0),
+        data: txCallData,
+      });
+
       setTransactionSended(tx);
 
-      const txResponse = await tx.wait();
+      const txResponse = await connectClient!.getTransaction(tx);
 
-      const balance = await counterContract!.counters(wallet.getAddress());
+      const balance = await connectClient!.readContract({
+        address: COUNTER_CONTRACT_ADDRESS,
+        abi: countContractAbi,
+        functionName: "counters",
+        args: [wallet.getAddress()],
+      });
+
       setNftBalance(Number(balance));
 
       setTransactionResponse(txResponse);
