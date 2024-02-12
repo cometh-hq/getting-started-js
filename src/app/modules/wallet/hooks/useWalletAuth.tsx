@@ -51,7 +51,7 @@ export function useWalletAuth() {
         await instance.connect(localStorageAddress);
       } else {
         await instance.connect();
-        const walletAddress = await instance.getAddress();
+        const walletAddress = instance.getAddress();
         window.localStorage.setItem("walletAddress", walletAddress);
       }
 
