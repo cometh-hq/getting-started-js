@@ -26,6 +26,7 @@ export function useWalletAuth() {
 
   const apiKey = process.env.NEXT_PUBLIC_COMETH_API_KEY;
   const chainId = process.env.NEXT_PUBLIC_COMETH_CHAIN as SupportedNetworks;
+  const baseUrl = process.env.NEXT_PUBLIC_COMETH_CONNECT_API_URL as string;
   const COUNTER_CONTRACT_ADDRESS = "0x3633A1bE570fBD902D10aC6ADd65BB11FC914624";
 
   function displayError(message: string) {
@@ -39,11 +40,13 @@ export function useWalletAuth() {
       const walletAdaptor = new ConnectAdaptor({
         chainId,
         apiKey,
+        baseUrl,
       });
 
       const instance = new ComethWallet({
         authAdapter: walletAdaptor,
         apiKey,
+        baseUrl,
       });
 
       const localStorageAddress = window.localStorage.getItem("walletAddress");
@@ -52,7 +55,7 @@ export function useWalletAuth() {
         await instance.connect(localStorageAddress);
       } else {
         await instance.connect();
-        const walletAddress = await instance.getAddress();
+        const walletAddress = instance.getAddress();
         window.localStorage.setItem("walletAddress", walletAddress);
       }
 
