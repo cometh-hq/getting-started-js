@@ -113,7 +113,7 @@ export function Transaction({
           content="Transaction confirmed !"
           link={{
             content: "Go see your transaction",
-            url: `https://mumbai.polygonscan.com/tx/${transactionResponse?.transactionHash}`,
+            url: `${process.env.NEXT_PUBLIC_SCAN_URL}/tx/${transactionResponse?.transactionHash}`,
           }}
         />
       )}

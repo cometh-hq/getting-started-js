@@ -23,7 +23,9 @@ function ConnectWallet({
         <>
           <CheckIcon width={20} height={20} />
           <a
-            href={`https://mumbai.polygonscan.com/address/${wallet.getAddress()}`}
+            href={`${
+              process.env.NEXT_PUBLIC_SCAN_URL
+            }/address/${wallet.getAddress()}`}
             target="_blank"
           >
             {"Wallet connected"}
