@@ -25,6 +25,7 @@ export function useWalletAuth() {
   const [connectionError, setConnectionError] = useState<string | null>(null);
 
   const apiKey = process.env.NEXT_PUBLIC_COMETH_API_KEY;
+  const chainId = process.env.NEXT_PUBLIC_COMETH_CHAIN as SupportedNetworks;
   const COUNTER_CONTRACT_ADDRESS = "0x3633A1bE570fBD902D10aC6ADd65BB11FC914624";
 
   function displayError(message: string) {
@@ -36,7 +37,7 @@ export function useWalletAuth() {
     setIsConnecting(true);
     try {
       const walletAdaptor = new ConnectAdaptor({
-        chainId: SupportedNetworks.MUMBAI,
+        chainId,
         apiKey,
       });
 
