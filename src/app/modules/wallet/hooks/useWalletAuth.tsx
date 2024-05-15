@@ -27,7 +27,9 @@ export function useWalletAuth() {
   const apiKey = process.env.NEXT_PUBLIC_COMETH_API_KEY;
   const chainId = process.env.NEXT_PUBLIC_COMETH_CHAIN as SupportedNetworks;
   const baseUrl = process.env.NEXT_PUBLIC_COMETH_CONNECT_API_URL as string;
-  const COUNTER_CONTRACT_ADDRESS = "0x4FbF9EE4B2AF774D4617eAb027ac2901a41a7b5F";
+  const counterContractAddress =
+    process.env.NEXT_PUBLIC_COUNTER_CONTRACT_ADDRESS ||
+    "0x4FbF9EE4B2AF774D4617eAb027ac2901a41a7b5F";
 
   function displayError(message: string) {
     setConnectionError(message);
@@ -62,7 +64,7 @@ export function useWalletAuth() {
       const instanceProvider = new ComethProvider(instance);
 
       const contract = new ethers.Contract(
-        COUNTER_CONTRACT_ADDRESS,
+        counterContractAddress,
         countContractAbi,
         instanceProvider.getSigner()
       );
