@@ -5,8 +5,8 @@ export function useWalletContext() {
     const {
         wallet,
         setWallet,
-        signer,
-        setSigner,
+        provider,
+        setProvider,
         auth,
         setAuth,
         counterContract,
@@ -15,8 +15,8 @@ export function useWalletContext() {
     return {
         wallet,
         setWallet,
-        signer,
-        setSigner,
+        provider,
+        setProvider,
         auth,
         setAuth,
         counterContract,

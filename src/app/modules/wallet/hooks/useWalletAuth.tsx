@@ -1,9 +1,9 @@
 "use client";
 
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import {ethers} from "ethers";
 import countContractAbi from "../../contract/counterABI.json";
-import {ComethAuth, ComethWallet, ComethWalletSigner} from "@cometh/connect-hosted-sdk";
+import {ComethAuth, ComethWallet, ComethProvider} from "@cometh/connect-hosted-sdk";
 import {useWalletContext} from "@/app/modules/wallet/hooks/useWalletContext";
 
 export function useWalletAuth() {
@@ -12,8 +12,8 @@ export function useWalletAuth() {
         setWallet,
         auth,
         setAuth,
-        signer,
-        setSigner,
+        provider,
+        setProvider,
         counterContract,
         setCounterContract,
     } = useWalletContext();
@@ -45,22 +45,23 @@ export function useWalletAuth() {
                 oidcUrl,
                 connectUrl
             })
-            const signer = new ComethWalletSigner(wallet)
-            const counterContract = new ethers.Contract(
-                counterContractAddress,
-                countContractAbi,
-                signer
-            );
             await auth.login()
             // with final UI, should refactor to force display modal of wallet.connect if not signup
             await wallet.connect()
+            const provider = new ComethProvider(wallet)
+            const counterContract = new ethers.Contract(
+                counterContractAddress,
+                countContractAbi,
+                provider.signer
+            );
             setIsConnected(true);
             setAuth(auth)
             setWallet(wallet)
-            setSigner(signer)
+            setProvider(provider)
             setCounterContract(counterContract)
             console.log('setup sdks: ', wallet, auth)
         } catch (e) {
+            console.error(e)
             displayError((e as Error).message);
         } finally {
             setIsConnecting(false);

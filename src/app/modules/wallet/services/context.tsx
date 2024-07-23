@@ -1,13 +1,13 @@
 "use client";
-import {ComethAuth, ComethWallet, ComethWalletSigner} from "@cometh/connect-hosted-sdk";
+import {ComethAuth, ComethProvider, ComethWallet} from "@cometh/connect-hosted-sdk";
 import {ethers} from "ethers";
 import {createContext, Dispatch, SetStateAction, useState} from "react";
 
 export const WalletContext = createContext<{
     wallet: ComethWallet | null;
     setWallet: Dispatch<SetStateAction<ComethWallet | null>>;
-    signer: ComethWalletSigner | null;
-    setSigner: Dispatch<SetStateAction<ComethWalletSigner | null>>;
+    provider: ComethProvider | null;
+    setProvider: Dispatch<SetStateAction<ComethProvider | null>>;
     auth: ComethAuth | null;
     setAuth: Dispatch<SetStateAction<ComethAuth | null>>;
     counterContract: ethers.Contract | null;
@@ -16,8 +16,8 @@ export const WalletContext = createContext<{
     wallet: null,
     setWallet: () => {
     },
-    signer: null,
-    setSigner: () => {
+    provider: null,
+    setProvider: () => {
     },
     auth: null,
     setAuth: () => {
@@ -33,7 +33,7 @@ export function WalletProvider({
     children: React.ReactNode;
 }): JSX.Element {
     const [wallet, setWallet] = useState<ComethWallet | null>(null);
-    const [signer, setSigner] = useState<ComethWalletSigner | null>(null);
+    const [provider, setProvider] = useState<ComethProvider | null>(null);
     const [auth, setAuth] = useState<ComethAuth | null>(null);
     const [counterContract, setCounterContract] =
         useState<ethers.Contract | null>(null);
@@ -43,8 +43,8 @@ export function WalletProvider({
             value={{
                 wallet,
                 setWallet,
-                signer,
-                setSigner,
+                provider,
+                setProvider,
                 auth,
                 setAuth,
                 counterContract,
