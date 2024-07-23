@@ -1,6 +1,6 @@
 import { Icons } from "@/app/lib/ui/components";
-import { ComethWallet } from "@cometh/connect-sdk";
 import { CheckIcon } from "@radix-ui/react-icons";
+import {ComethWallet} from "@cometh/connect-hosted-sdk";
 
 interface ConnectWalletProps {
   connectionError: string | null;
@@ -25,7 +25,7 @@ function ConnectWallet({
           <a
             href={`${
               process.env.NEXT_PUBLIC_SCAN_URL
-            }address/${wallet.getAddress()}`}
+            }/address/${wallet.getAddress()}`}
             target="_blank"
           >
             {"Wallet connected"}

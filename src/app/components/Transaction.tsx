@@ -6,9 +6,6 @@ import React, { useEffect, useState } from "react";
 import { useWalletAuth } from "../modules/wallet/hooks/useWalletAuth";
 import Alert from "../lib/ui/components/Alert";
 import { PlusIcon } from "@radix-ui/react-icons";
-import { RelayTransactionResponse } from "@cometh/connect-sdk";
-import { useWindowSize } from "../lib/ui/hooks/useWindowSize";
-import Confetti from "react-confetti";
 
 interface TransactionProps {
   transactionSuccess: boolean;
@@ -23,7 +20,7 @@ export function Transaction({
   const [isTransactionLoading, setIsTransactionLoading] =
     useState<boolean>(false);
   const [transactionSended, setTransactionSended] =
-    useState<RelayTransactionResponse | null>(null);
+    useState<any | null>(null);
   const [transactionResponse, setTransactionResponse] =
     useState<TransactionReceipt | null>(null);
   const [transactionFailure, setTransactionFailure] = useState(false);
@@ -72,7 +69,7 @@ export function Transaction({
     try {
       if (!wallet) throw new Error("No wallet instance");
 
-      const tx: RelayTransactionResponse = await counterContract!.count();
+      const tx = await counterContract!.count();
       setTransactionSended(tx);
 
       const txResponse = await tx.wait();
