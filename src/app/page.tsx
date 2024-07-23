@@ -5,7 +5,7 @@ import { useWalletAuth } from "./modules/wallet/hooks/useWalletAuth";
 import ConnectWallet from "./components/ConnectWallet";
 import { Transaction } from "./components/Transaction";
 import Confetti from "react-confetti";
-import { useWindowSize } from "@/app/lib/ui/hooks";
+import { useWindowSize } from "./lib/ui/hooks/useWindowSize";
 
 export default function App() {
   const { isConnecting, isConnected, connect, connectionError, wallet } =
