@@ -45,7 +45,7 @@ export function useWalletAuth() {
                 oidcUrl,
                 connectUrl
             })
-            await auth.login()
+            //await auth.login()
             // with final UI, should refactor to force display modal of wallet.connect if not signup
             await wallet.connect()
             const provider = new ComethProvider(wallet)
