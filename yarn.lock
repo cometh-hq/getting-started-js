@@ -19,10 +19,10 @@
   dependencies:
     regenerator-runtime "^0.14.0"
 
-"@cometh/connect-hosted-sdk@0.1.0-dev.16":
-  version "0.1.0-dev.16"
-  resolved "https://registry.yarnpkg.com/@cometh/connect-hosted-sdk/-/connect-hosted-sdk-0.1.0-dev.16.tgz#89de9378304d39656cdf1e70850498453505dbed"
-  integrity sha512-1xDTF9YGQjSIeQDxmPX243qqDUtXZqsYPWHh+Q8UHSLYRg34Sa4DHhqT91IeDJTdYfgord21y+cXk/g82nvLlw==
+"@cometh/connect-hosted-sdk@0.1.0-dev.17":
+  version "0.1.0-dev.17"
+  resolved "https://registry.yarnpkg.com/@cometh/connect-hosted-sdk/-/connect-hosted-sdk-0.1.0-dev.17.tgz#a7f4b9725560535eb00cbe3c3e4931e2ebc50261"
+  integrity sha512-CnTWikljk164ILK2nyFp2UaSwFScEvYba/43zxMVYonAEqyvZ4/PR0PRMvrKZTl00FTgfQWMksOUE+ZzRsI6Ww==
   dependencies:
     "@ethersproject/abstract-provider" "^5.7.0"
     "@ethersproject/abstract-signer" "^5.7.0"
