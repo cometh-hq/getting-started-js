@@ -3,7 +3,7 @@
 import {useState} from "react";
 import {ethers} from "ethers";
 import countContractAbi from "../../contract/counterABI.json";
-import {ComethAuth, ComethWallet, ComethProvider} from "@cometh/connect-hosted-sdk";
+import {ComethAuth, ComethProvider, ComethWallet} from "@cometh/connect-hosted-sdk";
 import {useWalletContext} from "@/app/modules/wallet/hooks/useWalletContext";
 
 export function useWalletAuth() {
@@ -25,6 +25,7 @@ export function useWalletAuth() {
     const apiKey = process.env.NEXT_PUBLIC_COMETH_API_KEY as string;
     const connectUrl = process.env.NEXT_PUBLIC_COMETH_CONNECT_API_URL as string;
     const oidcUrl = process.env.NEXT_PUBLIC_COMETH_OIDC_API_URL as string;
+    const oidcAppUrl = process.env.NEXT_PUBLIC_COMETH_OIDC_APP_URL as string;
     const counterContractAddress =
         process.env.NEXT_PUBLIC_COUNTER_CONTRACT_ADDRESS ||
         "0x4FbF9EE4B2AF774D4617eAb027ac2901a41a7b5F";
@@ -37,15 +38,16 @@ export function useWalletAuth() {
         if (!apiKey) throw new Error("no apiKey provided");
         setIsConnecting(true)
         try {
+            console.log('test: ', oidcAppUrl)
             const auth = new ComethAuth(apiKey, {
-                oidcUrl,
-                connectUrl
+                oidcApiURI: oidcUrl,
+                oidcAppURI: oidcAppUrl
             })
             const wallet = new ComethWallet(apiKey, {
-                oidcUrl,
-                connectUrl
+                oidcAppURI: oidcAppUrl,
+                connectApiURI: connectUrl
             })
-            //await auth.login()
+            await auth.login()
             // with final UI, should refactor to force display modal of wallet.connect if not signup
             await wallet.connect()
             const provider = new ComethProvider(wallet)
