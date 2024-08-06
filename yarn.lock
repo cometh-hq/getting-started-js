@@ -19,8 +19,10 @@
   dependencies:
     regenerator-runtime "^0.14.0"
 
-"@cometh/hosted-sdk-ethers@file:.yalc/@cometh/hosted-sdk-ethers":
+"@cometh/hosted-sdk-ethers@^0.1.0-dev.19":
   version "0.1.0-dev.19"
+  resolved "https://registry.yarnpkg.com/@cometh/hosted-sdk-ethers/-/hosted-sdk-ethers-0.1.0-dev.19.tgz#1dbac0f2afe804a16d9a4f0c35d37fb23800e482"
+  integrity sha512-KJpd0VKkvAZVBYjNSn+6scWd3srTT61T31vVdHGtvnpJxT+mH82bXtJooseOu3qNoa361HhDfH53sIa5oL99DQ==
   dependencies:
     "@ethersproject/abstract-provider" "^5.7.0"
     "@ethersproject/abstract-signer" "^5.7.0"
