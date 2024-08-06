@@ -24,7 +24,7 @@ export function useWalletAuth() {
 
     const apiKey = process.env.NEXT_PUBLIC_COMETH_API_KEY as string;
     const connectUrl = process.env.NEXT_PUBLIC_COMETH_CONNECT_API_URL as string;
-    const oidcUrl = process.env.NEXT_PUBLIC_COMETH_OIDC_API_URL as string;
+    //const oidcUrl = process.env.NEXT_PUBLIC_COMETH_OIDC_API_URL as string;
     const oidcAppUrl = process.env.NEXT_PUBLIC_COMETH_OIDC_APP_URL as string;
     const counterContractAddress =
         process.env.NEXT_PUBLIC_COUNTER_CONTRACT_ADDRESS ||
@@ -39,23 +39,20 @@ export function useWalletAuth() {
         setIsConnecting(true)
         try {
             console.log('test: ', oidcAppUrl)
-            const auth = new ComethAuth(apiKey, {
-                oidcApiURI: oidcUrl,
-                oidcAppURI: oidcAppUrl,
-                display: DisplayMode.POPUP
-            })
+            //const auth = new ComethAuth(apiKey, {
+            //    oidcApiURI: oidcUrl,
+            //    oidcAppURI: oidcAppUrl,
+            //    display: DisplayMode.POPUP
+            //})
             const wallet = new ComethWallet(apiKey, {
                 oidcAppURI: oidcAppUrl,
                 connectApiURI: connectUrl,
                 display: DisplayMode.POPUP
             })
-            console.error('start login')
-            await auth.login()
-            console.error('end login')
+            // we don't have login for now
+            //await auth.login()
             // with final UI, should refactor to force display modal of wallet.connect if not signup
-            console.error('start connect')
             await wallet.connect()
-            console.error('end connect')
             const provider = new ComethProvider(wallet)
             const counterContract = new ethers.Contract(
                 counterContractAddress,
