@@ -3,7 +3,7 @@
 import {useState} from "react";
 import {ethers} from "ethers";
 import countContractAbi from "../../contract/counterABI.json";
-import {ComethAuth, ComethProvider, ComethWallet} from "@cometh/connect-hosted-sdk";
+import {ComethAuth, ComethProvider, ComethWallet, DisplayMode} from "@cometh/hosted-sdk-ethers";
 import {useWalletContext} from "@/app/modules/wallet/hooks/useWalletContext";
 
 export function useWalletAuth() {
@@ -41,15 +41,21 @@ export function useWalletAuth() {
             console.log('test: ', oidcAppUrl)
             const auth = new ComethAuth(apiKey, {
                 oidcApiURI: oidcUrl,
-                oidcAppURI: oidcAppUrl
+                oidcAppURI: oidcAppUrl,
+                display: DisplayMode.POPUP
             })
             const wallet = new ComethWallet(apiKey, {
                 oidcAppURI: oidcAppUrl,
-                connectApiURI: connectUrl
+                connectApiURI: connectUrl,
+                display: DisplayMode.POPUP
             })
+            console.error('start login')
             await auth.login()
+            console.error('end login')
             // with final UI, should refactor to force display modal of wallet.connect if not signup
+            console.error('start connect')
             await wallet.connect()
+            console.error('end connect')
             const provider = new ComethProvider(wallet)
             const counterContract = new ethers.Contract(
                 counterContractAddress,

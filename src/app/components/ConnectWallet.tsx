@@ -1,6 +1,6 @@
 import { Icons } from "@/app/lib/ui/components";
 import { CheckIcon } from "@radix-ui/react-icons";
-import {ComethWallet} from "@cometh/connect-hosted-sdk";
+import {ComethWallet} from "@cometh/hosted-sdk-ethers";
 
 interface ConnectWalletProps {
   connectionError: string | null;

@@ -1,5 +1,5 @@
 "use client";
-import {ComethAuth, ComethProvider, ComethWallet} from "@cometh/connect-hosted-sdk";
+import {ComethAuth, ComethProvider, ComethWallet} from "@cometh/hosted-sdk-ethers";
 import {ethers} from "ethers";
 import {createContext, Dispatch, SetStateAction, useState} from "react";
 
